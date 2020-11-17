@@ -30,9 +30,23 @@
         <span id="date" class="lead"> 12:00 PM | November 16, 2020</span>
     </nav>
 
-    <!--current weather-->
+ 
     <main class="container">
-        <div class="row">
+        <div class="row mb-2">
+            <!--search bar-->
+            <div class="col-sm-12 col-md-3 col-lg-3 col-xl-3">
+                <div class="input-group mb-3" style="width: 100%;">
+                    <input id="search-input" type="city" name="city" class="form-control"
+                        placeholder="Please enter a city" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button id="searchBtn" class="btn btn-light"
+                            style="background-color: slategrey; color: floralwhite;" type="button">Search</button>
+                    </div>
+                </div>
+                <ul id="city-list" class="list-group list-group-flush">
+                </ul>
+            </div>
+             <!--current weather-->
             <div class="col-8 weather mx-auto">
                 <div class="weather-head">
                     <h1 id="location">Austin, Texas</h1>
@@ -77,47 +91,52 @@
 
 
 
-<!--five day forecast-->
-<div class="card-title">
-    <h1>Five Day Forecast</h1>
-</div>
+        <!--five day forecast-->
+        <div class="card-title">
+            <h1>Five Day Forecast</h1>
+        </div>
         <div class="card-deck">
             <div class="card">
                 <div class="card-header">Header</div>
                 <div class="card-body">
-                  <h5 class="card-title">Dark card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">Dark card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header">Header</div>
                 <div class="card-body">
-                  <h5 class="card-title">Dark card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">Dark card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">Header</div>
                 <div class="card-body">
-                  <h5 class="card-title">Dark card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">Dark card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
                 </div>
             </div>
 
             <div class="card">
                 <div class="card-header">Header</div>
                 <div class="card-body">
-                  <h5 class="card-title">Dark card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">Dark card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header">Header</div>
-  <div class="card-body">
-    <h5 class="card-title">Dark card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
+                <div class="card-body">
+                    <h5 class="card-title">Dark card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                </div>
             </div>
         </div>
 
