@@ -36,3 +36,6 @@
 var currentDate = moment().format('L');
 var API_KEY = "&appid=5399e17af7698732d442019e211d361b";
 var cities = JSON.parse(localStorage.getItem('cities')) || [];
+
+$("#search-input").keyup(function (event) {});
+$("#searchBtn").on("click", function(){});
