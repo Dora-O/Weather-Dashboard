@@ -45,4 +45,12 @@ $("#search-input").keyup(function (event) {
 });
 
 
-$("#searchBtn").on("click", function(){});
+$("#searchBtn").on("click", function(){
+    var QUERY = $("#search-input").val().trim();
+    getData(QUERY);
+    $("#search-input").attr("placeholder", "Enter another city");
+    cities.unshift(QUERY);
+    localStorage.setItem("cities", JSON.stringify(cities))
+    
+    renderButons();
+});
