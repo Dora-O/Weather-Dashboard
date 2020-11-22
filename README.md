@@ -9,5 +9,7 @@ User is able to click on a city in the search history and presented with previou
 HTML, CSS, JavaScript and bootstrap were used for application.
 
 Screenshot of functioning website.
+<img src ="https://user-images.githubusercontent.com/70343136/99893072-81604b00-2c41-11eb-8e29-eb417e5b5944.png" width ="200">
 
-Link of deployed site: 
+
+Link of deployed site: https://dora-o.github.io/Weather-Dashboard/.
