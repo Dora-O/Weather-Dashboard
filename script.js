@@ -37,5 +37,12 @@ var currentDate = moment().format('L');
 var API_KEY = "&appid=5399e17af7698732d442019e211d361b";
 var cities = JSON.parse(localStorage.getItem('cities')) || [];
 
-$("#search-input").keyup(function (event) {});
+$("#search-input").keyup(function (event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();        
+        $("#searchBtn").click();
+    }
+});
+
+
 $("#searchBtn").on("click", function(){});
