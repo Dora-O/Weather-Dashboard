@@ -60,6 +60,8 @@ function formatUVQuery(lon, lat) {
 }
 
 function init() {
-    var query = localStorage.getItem('city') || 'Atlanta';
+    var query = localStorage.getItem('city') || 'Austin';
     getData(query);
     renderButons();
+}
+
