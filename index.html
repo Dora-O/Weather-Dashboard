@@ -14,10 +14,9 @@
         href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css" type="text/css">
     <script src="script.js"></script>
-    <!--weather icons-->
-    <script src="https://kit.fontawesome.com/cd0a96e023.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
     <title>Weather Dashboard</title>
 </head>
@@ -28,7 +27,7 @@
         <a class="navbar-brand" href="#">
             <h1>Local Weather</h1>
         </a>
-        <span id="date" class="lead"> 12:00 PM | November 16, 2020</span>
+        <span id="date" class="date"></span>
     </nav>
 
     <main class="container">
@@ -49,15 +48,15 @@
             <!--current weather-->
             <div class="col-8 weather mx-auto">
                 <div class="weather-head">
-                    <h1 id="location">Austin, Texas</h1>
+                    <h1><span id="location"></span></h1>
                     <div class="row">
                         <div id="description" class="col-6">
                             
-                            <p id="desc">Rain <i id="icon-desc" class="fas fa-cloud-rain"></i> </p>
+                            <p id="desc"><span id="icon-desc" id="icon1"></span> </p>
                             
                         </div>
                         <div id="temperature" class="col-6">
-                            <p id="desc">75<i class="fas fa-temperature-low"></i></p>
+                            <p id="desc"><span id="temp"></span></p>
                         </div>
                     </div>
 
@@ -65,25 +64,25 @@
                 <div class="weather-body">
                     <div class="row">
                         <div class="humidity col-4">
-                            <i class="fas fa-humidity"></i><span> Humidity</span>
+                            Humidity
                         </div>
                         <div class="wind col-4">
-                            <i class="fas fa-wind"></i><span> Wind Speed</span>
+                            Wind Speed
                         </div>
                         <div class="uvIndex col-4">
-                            <i class="wi wi-horizon"></i><span> UV Index</span>
+                            UV Index
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div id="humidity" class="humidity-data col-4">
-                        65%
+                        <span id="humid"></span> %
                     </div>
                     <div id="wind" class="wind-data col-4">
-                        22 MPH
+                        <span id='wind'></span> MPH
                     </div>
                     <div id="uvIndex" class="degree-data col-4">
-                        <p class="rounded border border-danger bg-danger text-white">167</p>
+                        <p class="rounded border border-danger bg-danger text-white"><span id="uvIndex"></span></p>
                     </div>
                 </div>
             </div>
@@ -97,43 +96,43 @@
             <div class="card">
                 <div id="date1">Date1</div>
                 <div class="card-body">
-                    <i id="icon-desc" id="icon1" class="fas fa-cloud-rain"></i> 
-                    <p id="desc">75<i class="fas fa-temperature-low"></i></p>
-                    <p class="card-text"><i class="wi wi-humidity"></i>Humidity</p>
+                    <span id="icon-desc" id="icon1" ></span> 
+                    <p id="desc"><span id="temp1"></span></p>
+                    <p class="card-text">Humidity <span id="humid1"></span>%</p>
                 </div>
             </div>
             <div class="card">
                 <div id="date2">Date2</div>
                 <div class="card-body">
-                    <i id="icon-desc" id="icon2" class="fas fa-cloud-rain"></i> 
-                    <p id="desc">75<i class="fas fa-temperature-low"></i></p>
-                    <p class="card-text"><i class="wi wi-humidity"></i>Humidity</p>
+                    <span id="icon-desc" id="icon2" ></span> 
+                    <p id="desc"><span id="temp2"></span></p>
+                    <p class="card-text">Humidity <span id="humid2"></span>%</p>
                 </div>
             </div>
 
             <div class="card">
                 <div id="date3">Date3</div>
                 <div class="card-body">
-                    <i id="icon-desc" id="icon3" class="fas fa-cloud-rain"></i> 
-                    <p id="desc">75<i class="fas fa-temperature-low"></i></p>
-                    <p class="card-text"><i class="wi wi-humidity"></i>Humidity</p>
+                    <span id="icon-desc" id="icon3" ></span> 
+                    <p id="desc"><span id="temp3"></span></p>
+                    <p class="card-text">Humidity <span id="humid3"></span>%</p>
                 </div>
             </div>
 
             <div class="card">
                 <div id="date4">Date4</div>
                 <div class="card-body">
-                    <i id="icon-desc" id="icon4" class="fas fa-cloud-rain"></i> 
-                    <p id="desc">75<i class="fas fa-temperature-low"></i></p>
-                    <p class="card-text"><i class="wi wi-humidity"></i>Humidity</p>
+                    <span id="icon-desc" id="icon4" ></span> 
+                    <p id="desc"><span id="temp4"></span></p>
+                    <p class="card-text">Humidity <span id="humid4"></span>%</p>
                 </div>
             </div>
             <div class="card">
                 <div id="date5">Date5</div>
                 <div class="card-body">
-                    <i id="icon-desc" id="icon5" class="fas fa-cloud-rain"></i> 
-                    <p id="desc">75<i class="fas fa-temperature-low"></i></p>
-                    <p class="card-text"><i class="wi wi-humidity"></i>Humidity</p>
+                    <span id="icon-desc" id="icon5" ></span> 
+                    <p id="desc"><span id="temp5"></span></p>
+                    <p class="card-text">Humidity <span id="humid5"></span>%</p>
                 </div>
             </div>
         </div>
@@ -142,6 +141,7 @@
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </body>
 
 </html>
