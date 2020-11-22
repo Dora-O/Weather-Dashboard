@@ -54,3 +54,12 @@ $("#searchBtn").on("click", function(){
     
     renderButons();
 });
+
+function formatUVQuery(lon, lat) {
+    return "&lon=" + lon + "&lat=" + lat
+}
+
+function init() {
+    var query = localStorage.getItem('city') || 'Atlanta';
+    getData(query);
+    renderButons();
