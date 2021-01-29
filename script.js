@@ -1,4 +1,4 @@
-var currentDate = moment().format('L');
+var currentDate = moment().format('MMM Do YY');
 var API_KEY = "&appid=5399e17af7698732d442019e211d361b";
 var cities = JSON.parse(localStorage.getItem('cities')) || [];
 
