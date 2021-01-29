@@ -1,4 +1,4 @@
-var currentDate = moment().format('MMM Do YY');
+var currentDate = moment().format('MMM Do YYYY');
 var API_KEY = "&appid=5399e17af7698732d442019e211d361b";
 var cities = JSON.parse(localStorage.getItem('cities')) || [];
 
@@ -37,7 +37,7 @@ function getWeather(QUERY) {
 
     saveSearch(QUERY);
 
-    $(".lead").text(currentDate);
+    $(".date").text(currentDate);
 
 
     $.ajax({
