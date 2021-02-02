@@ -20,7 +20,7 @@ $("#searchBtn").on("click", function () {
     cities.unshift(QUERY);
     localStorage.setItem("cities", JSON.stringify(cities))
 
-    renderButons(); 
+    renderButons();
 });
 
 function formatUVQuery(lon, lat) {
@@ -50,12 +50,18 @@ function getWeather(QUERY) {
     })
         //will grab current weather info and display it on the webpage
         .then(function (currentRes) {
-
+            $("#location").html(localStorage.getItem('city'))
             $("#location").html(currentRes.location);
             $("#temp").html(Math.floor(currentRes.main.temp));
             $("#wind").html(currentRes.wind.speed);
             $("#humidity").html(currentRes.main.humidity);
-            $("#description").html(currentRes.weather[0].description)
+            // $("#description").html(currentRes.weather[0].icon)
+
+            var iconPath = currentRes.weather[0].icon;
+            console.log(currentRes)
+            var iconURL = "http://openweathermap.org/img/wn/" + iconPath + "@2x.png";
+            //previous icon issues was due to url showing https instead of http - this will show icon of weather description 
+            $("#description").html("<img src='" + iconURL + "'>");
 
             $.ajax({
                 url: uvURL + formatUVQuery(currentRes.coord.lon, currentRes.coord.lat) + API_KEY,
@@ -67,16 +73,12 @@ function getWeather(QUERY) {
         })
 
 
-    // var iconPath = currentRes.weather[0].icon;
-    // console.log(currentRes)
-    // var iconURL = "https://openweathermap.org/img/wn/" + iconPath + "@2x.png";
-    // $("#icon").html("<img src='" + iconUrl  + "'>");
 
     $.ajax({
         url: fiveDayForecastURL + QUERY + unitsURL + API_KEY,
         method: "GET"
     })
-    //will grab fiveday weather info and display it on the webpage
+        //will grab fiveday weather info and display it on the webpage
         .then(function (forecastRes) {
             //DAY 1
             var dateOne = moment().add(1, 'days').calendar();
@@ -87,35 +89,52 @@ function getWeather(QUERY) {
             //shows humidity for said date 
             $("#humid1").html(forecastRes.list[0].main.humidity);
             //shows description ie clear skys etc since i was not able to get the icons to appear on webpage
-            $("#description1").html(forecastRes.list[0].weather[0].description)
+            // $("#description1").html(forecastRes.list[0].weather[0].description)
+            var iconPath1 = forecastRes.list[0].weather[0].icon;
+            console.log(iconPath1)
+            var iconURL = "http://openweathermap.org/img/wn/" + iconPath1 + "@2x.png";
+            //previous icon issues was due to url showing https instead of http - this will show icon of weather description 
+            $("#description1").html("<img src='" + iconURL + "'>");
 
             //DAY 2
             var dateTwo = moment().add(2, 'days').calendar();
             $("#date2").html(dateTwo);
             $("#temp2").html(Math.floor(forecastRes.list[9].main.temp));
             $("#humid2").html(forecastRes.list[9].main.humidity);
-            $("#description2").html(forecastRes.list[9].weather[0].description)
+            // $("#description2").html(forecastRes.list[9].weather[0].description)
+            var iconPath2 = forecastRes.list[9].weather[0].icon;
+            var iconURL = "http://openweathermap.org/img/wn/" + iconPath2 + "@2x.png";
+            $("#description2").html("<img src='" + iconURL + "'>");
 
             //DAY 3
             var dateThree = moment().add(3, 'days').calendar();
             $("#date3").html(dateThree);
             $("#temp3").html(Math.floor(forecastRes.list[17].main.temp));
             $("#humid3").html(forecastRes.list[17].main.humidity);
-            $("#description3").html(forecastRes.list[17].weather[0].description)
+            // $("#description3").html(forecastRes.list[17].weather[0].description)
+            var iconPath3 = forecastRes.list[17].weather[0].icon;
+            var iconURL = "http://openweathermap.org/img/wn/" + iconPath3 + "@2x.png";
+            $("#description3").html("<img src='" + iconURL + "'>");
 
             //DAY 4
             var dateFour = moment().add(4, 'days').calendar();
             $("#date4").html(dateFour);
             $("#temp4").html(Math.floor(forecastRes.list[25].main.temp));
             $("#humid4").html(forecastRes.list[25].main.humidity);
-            $("#description4").html(forecastRes.list[25].weather[0].description)
+            // $("#description4").html(forecastRes.list[25].weather[0].description)
+            var iconPath4 = forecastRes.list[25].weather[0].icon;
+            var iconURL = "http://openweathermap.org/img/wn/" + iconPath4 + "@2x.png";
+            $("#description4").html("<img src='" + iconURL + "'>");
 
             //DAY 5
             var dateFive = moment().add(5, 'days').calendar();
             $("#date5").html(dateFive);
             $("#temp5").html(Math.floor(forecastRes.list[33].main.temp));
             $("#humid5").html(forecastRes.list[33].main.humidity);
-            $("#description5").html(forecastRes.list[33].weather[0].description)
+            // $("#description5").html(forecastRes.list[33].weather[0].description)
+            var iconPath5 = forecastRes.list[33].weather[0].icon;
+            var iconURL = "http://openweathermap.org/img/wn/" + iconPath5 + "@2x.png";
+            $("#description5").html("<img src='" + iconURL + "'>");
         })
 }
 function saveSearch(city) {
