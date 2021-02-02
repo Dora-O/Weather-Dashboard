@@ -1,6 +1,8 @@
 var currentDate = moment().format('MMM Do YYYY');
 var API_KEY = "&appid=5399e17af7698732d442019e211d361b";
 var cities = JSON.parse(localStorage.getItem('cities')) || [];
+var userInput = document.querySelector("#search-input")
+var searchBtn = document.querySelector("#searchBtn")
 
 $("#search-input").keyup(function (event) {
     if (event.keyCode === 13) {
@@ -11,7 +13,9 @@ $("#search-input").keyup(function (event) {
 
 $("#searchBtn").on("click", function () {
     var QUERY = $("#search-input").val().trim();
-    getData(QUERY);
+    getWeather(QUERY);
+    console.log(QUERY)
+    console.log(getWeather)
     $("#search-input").attr("placeholder", "Enter another city");
     cities.unshift(QUERY);
     localStorage.setItem("cities", JSON.stringify(cities))
@@ -24,7 +28,7 @@ function formatUVQuery(lon, lat) {
 }
 
 function init() {
-    var query = localStorage.getItem('city') || 'Austin';
+    var query = localStorage.getItem('city') || [];
     getWeather(query);
     renderButons();
 }
