@@ -16,7 +16,7 @@ $("#searchBtn").on("click", function () {
     cities.unshift(QUERY);
     localStorage.setItem("cities", JSON.stringify(cities))
 
-    renderButons();
+    renderButons(); 
 });
 
 function formatUVQuery(lon, lat) {
@@ -44,11 +44,11 @@ function getWeather(QUERY) {
         url: weatherURL + QUERY + unitsURL + API_KEY,
         method: "GET"
     })
-
+        //will grab current weather info and display it on the webpage
         .then(function (currentRes) {
 
             $("#location").html(currentRes.location);
-            $("#temp").html(currentRes.main.temp);
+            $("#temp").html(Math.floor(currentRes.main.temp));
             $("#wind").html(currentRes.wind.speed);
             $("#humidity").html(currentRes.main.humidity);
             $("#description").html(currentRes.weather[0].description)
@@ -72,40 +72,44 @@ function getWeather(QUERY) {
         url: fiveDayForecastURL + QUERY + unitsURL + API_KEY,
         method: "GET"
     })
+    //will grab fiveday weather info and display it on the webpage
         .then(function (forecastRes) {
             //DAY 1
             var dateOne = moment().add(1, 'days').calendar();
+            //shows date
             $("#date1").html(dateOne);
-            $("#temp1").html(forecastRes.list[0].main.temp);
+            //shows temp for said date
+            $("#temp1").html(Math.floor(forecastRes.list[0].main.temp));
+            //shows humidity for said date 
             $("#humid1").html(forecastRes.list[0].main.humidity);
+            //shows description ie clear skys etc since i was not able to get the icons to appear on webpage
             $("#description1").html(forecastRes.list[0].weather[0].description)
-
 
             //DAY 2
             var dateTwo = moment().add(2, 'days').calendar();
             $("#date2").html(dateTwo);
-            $("#temp2").html(forecastRes.list[9].main.temp);
+            $("#temp2").html(Math.floor(forecastRes.list[9].main.temp));
             $("#humid2").html(forecastRes.list[9].main.humidity);
             $("#description2").html(forecastRes.list[9].weather[0].description)
 
             //DAY 3
             var dateThree = moment().add(3, 'days').calendar();
             $("#date3").html(dateThree);
-            $("#temp3").html(forecastRes.list[17].main.temp);
+            $("#temp3").html(Math.floor(forecastRes.list[17].main.temp));
             $("#humid3").html(forecastRes.list[17].main.humidity);
             $("#description3").html(forecastRes.list[17].weather[0].description)
 
             //DAY 4
             var dateFour = moment().add(4, 'days').calendar();
             $("#date4").html(dateFour);
-            $("#temp4").html(forecastRes.list[25].main.temp);
+            $("#temp4").html(Math.floor(forecastRes.list[25].main.temp));
             $("#humid4").html(forecastRes.list[25].main.humidity);
             $("#description4").html(forecastRes.list[25].weather[0].description)
 
             //DAY 5
             var dateFive = moment().add(5, 'days').calendar();
             $("#date5").html(dateFive);
-            $("#temp5").html(forecastRes.list[33].main.temp);
+            $("#temp5").html(Math.floor(forecastRes.list[33].main.temp));
             $("#humid5").html(forecastRes.list[33].main.humidity);
             $("#description5").html(forecastRes.list[33].weather[0].description)
         })
