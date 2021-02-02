@@ -1,8 +1,9 @@
 var currentDate = moment().format('MMM Do YYYY');
 var API_KEY = "&appid=5399e17af7698732d442019e211d361b";
 var cities = JSON.parse(localStorage.getItem('cities')) || [];
-var userInput = document.querySelector("#search-input")
-var searchBtn = document.querySelector("#searchBtn")
+var userInput = document.querySelector("#search-input");
+var searchBtn = document.querySelector("#searchBtn");
+var clearBtn = document.querySelector("#clearBtn");
 
 $("#search-input").keyup(function (event) {
     if (event.keyCode === 13) {
@@ -25,6 +26,20 @@ $("#searchBtn").on("click", function () {
 
 function formatUVQuery(lon, lat) {
     return "&lon=" + lon + "&lat=" + lat
+}
+
+function uvColors() {
+    for (var i = 0; i < 8; i++) {
+        if (uvRes.value <= 2) {
+            $("#uvIndex").addClass("favorable");
+        }
+        else if (3 <= uvRes.value <= 7) {
+            $("#uvIndex").addClass("moderate");
+        }
+        else (uvRes.value >= 8)
+        $("#uvIndex").addClass("severe");
+
+    }
 }
 
 function init() {
@@ -67,12 +82,22 @@ function getWeather(QUERY) {
                 url: uvURL + formatUVQuery(currentRes.coord.lon, currentRes.coord.lat) + API_KEY,
                 method: "GET"
             })
+
                 .then(function (uvRes) {
-                    $("#uvIndex").html(uvRes.value)
+                    console.log(uvRes.value);
+                    if (uvRes.value >= 8) {
+                        $("#uvIndex").addClass("severe");
+                        $("#uvIndex").html(uvRes.value);
+                    }
+                    else if (3 <= uvRes.value <= 7) {
+                        $("#uvIndex").addClass("moderate");
+                        $("#uvIndex").html(uvRes.value);
+                    }
+                    else (0< uvRes.value <= 2)
+                    $("#uvIndex").addClass("favorable");
+                    $("#uvIndex").html(uvRes.value);
                 })
         })
-
-
 
     $.ajax({
         url: fiveDayForecastURL + QUERY + unitsURL + API_KEY,
@@ -117,7 +142,7 @@ function getWeather(QUERY) {
             $("#description3").html("<img src='" + iconURL + "'>");
 
             //DAY 4
-            var dateFour = moment().add(4, 'days').format('MMM Do YYYY')  ;
+            var dateFour = moment().add(4, 'days').format('MMM Do YYYY');
             $("#date4").html(dateFour);
             $("#temp4").html(Math.floor(forecastRes.list[25].main.temp));
             $("#humid4").html(forecastRes.list[25].main.humidity);
@@ -127,7 +152,7 @@ function getWeather(QUERY) {
             $("#description4").html("<img src='" + iconURL + "'>");
 
             //DAY 5
-            var dateFive = moment().add(5, 'days').format('MMM Do YYYY')  ;
+            var dateFive = moment().add(5, 'days').format('MMM Do YYYY');
             $("#date5").html(dateFive);
             $("#temp5").html(Math.floor(forecastRes.list[33].main.temp));
             $("#humid5").html(forecastRes.list[33].main.humidity);
@@ -137,10 +162,16 @@ function getWeather(QUERY) {
             $("#description5").html("<img src='" + iconURL + "'>");
         })
 }
-function saveSearch(city) {
 
+function saveSearch(city) {
     localStorage.setItem('city', city);
 }
+
+//will clear list and local storage
+$("#clearBtn").on("click", function(){
+    window.localStorage.clear()
+    $("#city-list").empty();
+});
 
 $("#city-list").on("click", ".searches", function () {
     var queryBtn = $(this).text();
@@ -151,8 +182,8 @@ $("#city-list").on("click", ".searches", function () {
 init();
 
 function renderButons() {
-
     $("#city-list").empty();
+    //adds cities to list and will only show the 5 most recent cities 
     for (i = 0; i < cities.length; i++) {
         newCity = $("<button></button>").append(cities[i]).addClass("btn btn-light m-1 searches mb-2");
         $("#city-list").append(newCity);
@@ -160,4 +191,4 @@ function renderButons() {
     }
 
     $("#search-input").val("");
-}
+};
