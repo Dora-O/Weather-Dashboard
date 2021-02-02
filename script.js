@@ -31,8 +31,8 @@ function init() {
 
 function getWeather(QUERY) {
     var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
-    var uvURL = "http://api.openweathermap.org/data/2.5/uvi?";
-    var fiveDayForecast = "http://api.openweathermap.org/data/2.5/forecast?q=";
+    var uvURL = "https://api.openweathermap.org/data/2.5/uvi?";
+    var fiveDayForecastURL = "https://api.openweathermap.org/data/2.5/forecast?q=";
     var unitsURL = "&units=imperial";
 
     saveSearch(QUERY);
@@ -51,6 +51,7 @@ function getWeather(QUERY) {
             $("#temp").html(currentRes.main.temp);
             $("#wind").html(currentRes.wind.speed);
             $("#humidity").html(currentRes.main.humidity);
+            $("#description").html(currentRes.weather[0].description)
 
             $.ajax({
                 url: uvURL + formatUVQuery(currentRes.coord.lon, currentRes.coord.lat) + API_KEY,
@@ -62,12 +63,10 @@ function getWeather(QUERY) {
         })
 
 
-    var iconPath = weatherRes.weather[0].icon;
-    var iconURL = "https://openweathermap.org/img/wn/" + iconPath + "@2x.png";
-
-    var IMG1 = $("<img>");
-    IMG1.attr("src", iconURL);
-    $("#icon").html(IMG1);
+    // var iconPath = currentRes.weather[0].icon;
+    // console.log(currentRes)
+    // var iconURL = "https://openweathermap.org/img/wn/" + iconPath + "@2x.png";
+    // $("#icon").html("<img src='" + iconUrl  + "'>");
 
     $.ajax({
         url: fiveDayForecastURL + QUERY + unitsURL + API_KEY,
@@ -75,72 +74,34 @@ function getWeather(QUERY) {
     })
         .then(function (forecastRes) {
             //DAY 1
-            var dateOne = moment().add(1, 'days').format('L');
+            var dateOne = moment().add(1, 'days').calendar();
             $("#date1").html(dateOne);
+            $("#temp1").html(forecastRes.list[0].main.temp);
+            $("#humid1").html(forecastRes.list[0].main.humidity);
+            console.log(forecastRes)
 
-            var icon5dayPath1 = forecastRes.list[2].weather[0].icon;
-            var icon5dayURL1 = "https://openweathermap.org/img/wn/" + icon5dayPath1 + "@2x.png";
-
-            var iconDay1 = $("<img>");
-            iconDay1.attr("src", icon5dayURL1);
-            $("#icon1").html(iconDay1);
-
-            $("#temp1").html(forecastRes.list[2].main.temp);
-            $("#humid1").html(forecastRes.list[2].main.humidity);
 
             //DAY 2
-            var dateTwo = moment().add(2, 'days').format('L');
+            var dateTwo = moment().add(2, 'days').calendar();
             $("#date2").html(dateTwo);
-
-            var icon5dayPath2 = forecastRes.list[9].weather[0].icon;
-            var icon5dayURL2 = "https://openweathermap.org/img/wn/" + icon5dayPath2 + "@2x.png";
-
-            var iconDay2 = $("<img>");
-            iconDay2.attr("src", icon5dayURL2);
-            $("#icon2").html(iconDay2);
-
             $("#temp2").html(forecastRes.list[9].main.temp);
             $("#humid2").html(forecastRes.list[9].main.humidity);
 
             //DAY 3
-            var dateThree = moment().add(3, 'days').format('L');
+            var dateThree = moment().add(3, 'days').calendar();
             $("#date3").html(dateThree);
-
-            var icon5dayPath3 = forecastRes.list[17].weather[0].icon;
-            var icon5dayURL3 = "https://openweathermap.org/img/wn/" + icon5dayPath3 + "@2x.png";
-
-            var iconDay3 = $("<img>");
-            iconDay3.attr("src", icon5dayURL3);
-            $("#icon3").html(iconDay3);
-
             $("#temp3").html(forecastRes.list[17].main.temp);
             $("#humid3").html(forecastRes.list[17].main.humidity);
 
             //DAY 4
-            var dateFour = moment().add(4, 'days').format('L');
+            var dateFour = moment().add(4, 'days').calendar();
             $("#date4").html(dateFour);
-
-            var icon5dayPath4 = forecastRes.list[25].weather[0].icon;
-            var icon5dayURL4 = "https://openweathermap.org/img/wn/" + icon5dayPath4 + "@2x.png";
-
-            var iconDay4 = $("<img>");
-            iconDay4.attr("src", icon5dayURL4);
-            $("#icon4").html(iconDay4);
-
             $("#temp4").html(forecastRes.list[25].main.temp);
             $("#humid4").html(forecastRes.list[25].main.humidity);
 
             //DAY 5
-            var dateFive = moment().add(5, 'days').format('L');
+            var dateFive = moment().add(5, 'days').calendar();
             $("#date5").html(dateFive);
-
-            var icon5dayPath5 = forecastRes.list[33].weather[0].icon;
-            var icon5dayURL5 = "https://openweathermap.org/img/wn/" + icon5dayPath5 + "@2x.png";
-
-            var iconDay5 = $("<img>");
-            iconDay5.attr("src", icon5dayURL5);
-            $("#icon5").html(iconDay5);
-
             $("#temp5").html(forecastRes.list[33].main.temp);
             $("#humid5").html(forecastRes.list[33].main.humidity);
         })
