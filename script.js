@@ -53,8 +53,8 @@ function getWeather(QUERY) {
             $("#location").html(localStorage.getItem('city'))
             $("#location").html(currentRes.location);
             $("#temp").html(Math.floor(currentRes.main.temp));
-            $("#wind").html(currentRes.wind.speed);
-            $("#humidity").html(currentRes.main.humidity);
+            $("#wind").html(currentRes.wind.speed + " mph");
+            $("#humidity").html(currentRes.main.humidity + " %");
             // $("#description").html(currentRes.weather[0].icon)
 
             var iconPath = currentRes.weather[0].icon;
@@ -117,7 +117,7 @@ function getWeather(QUERY) {
             $("#description3").html("<img src='" + iconURL + "'>");
 
             //DAY 4
-            var dateFour = moment().add(4, 'days').format('MMM Do YYYY');
+            var dateFour = moment().add(4, 'days').format('MMM Do YYYY')  ;
             $("#date4").html(dateFour);
             $("#temp4").html(Math.floor(forecastRes.list[25].main.temp));
             $("#humid4").html(forecastRes.list[25].main.humidity);
@@ -127,7 +127,7 @@ function getWeather(QUERY) {
             $("#description4").html("<img src='" + iconURL + "'>");
 
             //DAY 5
-            var dateFive = moment().add(5, 'days').format('MMM Do YYYY');
+            var dateFive = moment().add(5, 'days').format('MMM Do YYYY')  ;
             $("#date5").html(dateFive);
             $("#temp5").html(Math.floor(forecastRes.list[33].main.temp));
             $("#humid5").html(forecastRes.list[33].main.humidity);
