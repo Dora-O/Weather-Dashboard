@@ -81,7 +81,7 @@ function getWeather(QUERY) {
         //will grab fiveday weather info and display it on the webpage
         .then(function (forecastRes) {
             //DAY 1
-            var dateOne = moment().add(1, 'days').calendar();
+            var dateOne = moment().add(1, 'days').format('MMM Do YYYY');
             //shows date
             $("#date1").html(dateOne);
             //shows temp for said date
@@ -97,7 +97,7 @@ function getWeather(QUERY) {
             $("#description1").html("<img src='" + iconURL + "'>");
 
             //DAY 2
-            var dateTwo = moment().add(2, 'days').calendar();
+            var dateTwo = moment().add(2, 'days').format('MMM Do YYYY');
             $("#date2").html(dateTwo);
             $("#temp2").html(Math.floor(forecastRes.list[9].main.temp));
             $("#humid2").html(forecastRes.list[9].main.humidity);
@@ -107,7 +107,7 @@ function getWeather(QUERY) {
             $("#description2").html("<img src='" + iconURL + "'>");
 
             //DAY 3
-            var dateThree = moment().add(3, 'days').calendar();
+            var dateThree = moment().add(3, 'days').format('MMM Do YYYY');
             $("#date3").html(dateThree);
             $("#temp3").html(Math.floor(forecastRes.list[17].main.temp));
             $("#humid3").html(forecastRes.list[17].main.humidity);
@@ -117,7 +117,7 @@ function getWeather(QUERY) {
             $("#description3").html("<img src='" + iconURL + "'>");
 
             //DAY 4
-            var dateFour = moment().add(4, 'days').calendar();
+            var dateFour = moment().add(4, 'days').format('MMM Do YYYY');
             $("#date4").html(dateFour);
             $("#temp4").html(Math.floor(forecastRes.list[25].main.temp));
             $("#humid4").html(forecastRes.list[25].main.humidity);
@@ -127,7 +127,7 @@ function getWeather(QUERY) {
             $("#description4").html("<img src='" + iconURL + "'>");
 
             //DAY 5
-            var dateFive = moment().add(5, 'days').calendar();
+            var dateFive = moment().add(5, 'days').format('MMM Do YYYY');
             $("#date5").html(dateFive);
             $("#temp5").html(Math.floor(forecastRes.list[33].main.temp));
             $("#humid5").html(forecastRes.list[33].main.humidity);
