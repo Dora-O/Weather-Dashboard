@@ -15,8 +15,8 @@ $("#search-input").keyup(function (event) {
 $("#searchBtn").on("click", function () {
     var QUERY = $("#search-input").val().trim();
     getWeather(QUERY);
-    console.log(QUERY)
-    console.log(getWeather)
+    // console.log(QUERY)
+    // console.log(getWeather)
     $("#search-input").attr("placeholder", "Enter another city");
     cities.unshift(QUERY);
     localStorage.setItem("cities", JSON.stringify(cities))
@@ -26,20 +26,6 @@ $("#searchBtn").on("click", function () {
 
 function formatUVQuery(lon, lat) {
     return "&lon=" + lon + "&lat=" + lat
-}
-
-function uvColors() {
-    for (var i = 0; i < 8; i++) {
-        if (uvRes.value <= 2) {
-            $("#uvIndex").addClass("favorable");
-        }
-        else if (3 <= uvRes.value <= 7) {
-            $("#uvIndex").addClass("moderate");
-        }
-        else (uvRes.value >= 8)
-        $("#uvIndex").addClass("severe");
-
-    }
 }
 
 function init() {
@@ -73,7 +59,7 @@ function getWeather(QUERY) {
             // $("#description").html(currentRes.weather[0].icon)
 
             var iconPath = currentRes.weather[0].icon;
-            console.log(currentRes)
+            // console.log(currentRes)
             var iconURL = "http://openweathermap.org/img/wn/" + iconPath + "@2x.png";
             //previous icon issues was due to url showing https instead of http - this will show icon of weather description 
             $("#description").html("<img src='" + iconURL + "'>");
@@ -84,18 +70,19 @@ function getWeather(QUERY) {
             })
 
                 .then(function (uvRes) {
-                    console.log(uvRes.value);
-                    if (uvRes.value >= 8) {
-                        $("#uvIndex").addClass("severe");
-                        $("#uvIndex").html(uvRes.value);
+                    // console.log(uvRes)
+                    // console.log(Math.floor(uvRes.value));
+                    // console.log(uvRes.value)
+                    var uvValue = JSON.parse(uvRes.value)
+                    if (uvValue <= 2) {
+                        $("#uvIndex").addClass("favorable");
                     }
-                    else if (3 <= uvRes.value <= 7) {
+                    else if (3 < uvValue < 7) {
                         $("#uvIndex").addClass("moderate");
-                        $("#uvIndex").html(uvRes.value);
                     }
-                    else (0< uvRes.value <= 2)
-                    $("#uvIndex").addClass("favorable");
-                    $("#uvIndex").html(uvRes.value);
+                    else($("#uvIndex").addClass("severe"));
+
+                    $("#uvIndex").html(uvRes.value)
                 })
         })
 
@@ -116,7 +103,7 @@ function getWeather(QUERY) {
             //shows description ie clear skys etc since i was not able to get the icons to appear on webpage
             // $("#description1").html(forecastRes.list[0].weather[0].description)
             var iconPath1 = forecastRes.list[0].weather[0].icon;
-            console.log(iconPath1)
+            // console.log(iconPath1)
             var iconURL = "http://openweathermap.org/img/wn/" + iconPath1 + "@2x.png";
             //previous icon issues was due to url showing https instead of http - this will show icon of weather description 
             $("#description1").html("<img src='" + iconURL + "'>");
@@ -168,7 +155,7 @@ function saveSearch(city) {
 }
 
 //will clear list and local storage
-$("#clearBtn").on("click", function(){
+$("#clearBtn").on("click", function () {
     window.localStorage.clear()
     $("#city-list").empty();
 });
