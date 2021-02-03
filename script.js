@@ -73,16 +73,34 @@ function getWeather(QUERY) {
                     // console.log(uvRes)
                     // console.log(Math.floor(uvRes.value));
                     // console.log(uvRes.value)
-                    var uvValue = JSON.parse(uvRes.value)
-                    if (uvValue <= 2) {
-                        $("#uvIndex").addClass("favorable");
+                    var uvValue = uvRes.value;
+                    // console.log(typeof(uvRes.value))
+                    // console.log(typeof(uvValue))
+                    // console.log(uvValue)
+                    var uvIndex = document.querySelector("#uvIndex");
+                    uvIndex.textContent = uvValue;
+                    // $("#uvIndex").html(uvValue)
+                    if (uvValue > 11) {
+                        // $("#uvIndex").addClass("purple");
+                        uvIndex.style.backgroundColor = "purple";
                     }
-                    else if (3 < uvValue <= 7) {
-                        $("#uvIndex").addClass("moderate");
+                    else if (uvValue > 8) {
+                        // $("#uvIndex").addClass("severe");
+                        uvIndex.style.backgroundColor = "red";
                     }
-                    else{$("#uvIndex").addClass("severe")};
-
-                    $("#uvIndex").html(uvRes.value)
+                    else if (uvValue > 6) {
+                        // $("#uvIndex").addClass("orange");
+                        uvIndex.style.backgroundColor = "orange"
+                    }
+                    else if (uvValue > 3) {
+                        // $("#uvIndex").addClass("moderate");
+                        uvIndex.style.backgroundColor = "yellow";
+                        uvIndex.style.color = "black";
+                    }
+                    else { 
+                        // $("#uvIndex").addClass("favorable"); 
+                        uvIndex.style.backgroundColor = "green"
+                    };
                 })
         })
 
