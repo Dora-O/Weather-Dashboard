@@ -60,7 +60,7 @@ function getWeather(QUERY) {
 
             var iconPath = currentRes.weather[0].icon;
             // console.log(currentRes)
-            var iconURL = "http://openweathermap.org/img/wn/" + iconPath + "@2x.png";
+            var iconURL = "https://openweathermap.org/img/wn/" + iconPath + "@2x.png";
             //previous icon issues was due to url showing https instead of http - this will show icon of weather description 
             $("#description").html("<img src='" + iconURL + "'>");
 
@@ -77,10 +77,10 @@ function getWeather(QUERY) {
                     if (uvValue <= 2) {
                         $("#uvIndex").addClass("favorable");
                     }
-                    else if (3 < uvValue < 7) {
+                    else if (3 < uvValue <= 7) {
                         $("#uvIndex").addClass("moderate");
                     }
-                    else($("#uvIndex").addClass("severe"));
+                    else{$("#uvIndex").addClass("severe")};
 
                     $("#uvIndex").html(uvRes.value)
                 })
@@ -104,7 +104,7 @@ function getWeather(QUERY) {
             // $("#description1").html(forecastRes.list[0].weather[0].description)
             var iconPath1 = forecastRes.list[0].weather[0].icon;
             // console.log(iconPath1)
-            var iconURL = "http://openweathermap.org/img/wn/" + iconPath1 + "@2x.png";
+            var iconURL = "https://openweathermap.org/img/wn/" + iconPath1 + "@2x.png";
             //previous icon issues was due to url showing https instead of http - this will show icon of weather description 
             $("#description1").html("<img src='" + iconURL + "'>");
 
@@ -115,7 +115,7 @@ function getWeather(QUERY) {
             $("#humid2").html(forecastRes.list[9].main.humidity);
             // $("#description2").html(forecastRes.list[9].weather[0].description)
             var iconPath2 = forecastRes.list[9].weather[0].icon;
-            var iconURL = "http://openweathermap.org/img/wn/" + iconPath2 + "@2x.png";
+            var iconURL = "https://openweathermap.org/img/wn/" + iconPath2 + "@2x.png";
             $("#description2").html("<img src='" + iconURL + "'>");
 
             //DAY 3
@@ -125,7 +125,7 @@ function getWeather(QUERY) {
             $("#humid3").html(forecastRes.list[17].main.humidity);
             // $("#description3").html(forecastRes.list[17].weather[0].description)
             var iconPath3 = forecastRes.list[17].weather[0].icon;
-            var iconURL = "http://openweathermap.org/img/wn/" + iconPath3 + "@2x.png";
+            var iconURL = "https://openweathermap.org/img/wn/" + iconPath3 + "@2x.png";
             $("#description3").html("<img src='" + iconURL + "'>");
 
             //DAY 4
@@ -135,7 +135,7 @@ function getWeather(QUERY) {
             $("#humid4").html(forecastRes.list[25].main.humidity);
             // $("#description4").html(forecastRes.list[25].weather[0].description)
             var iconPath4 = forecastRes.list[25].weather[0].icon;
-            var iconURL = "http://openweathermap.org/img/wn/" + iconPath4 + "@2x.png";
+            var iconURL = "https://openweathermap.org/img/wn/" + iconPath4 + "@2x.png";
             $("#description4").html("<img src='" + iconURL + "'>");
 
             //DAY 5
@@ -145,7 +145,7 @@ function getWeather(QUERY) {
             $("#humid5").html(forecastRes.list[33].main.humidity);
             // $("#description5").html(forecastRes.list[33].weather[0].description)
             var iconPath5 = forecastRes.list[33].weather[0].icon;
-            var iconURL = "http://openweathermap.org/img/wn/" + iconPath5 + "@2x.png";
+            var iconURL = "https://openweathermap.org/img/wn/" + iconPath5 + "@2x.png";
             $("#description5").html("<img src='" + iconURL + "'>");
         })
 }
